@@ -163,8 +163,8 @@ summary{cursor:pointer;font-weight:600;font-family:var(--serif);font-size:1.1rem
 /* floating contact widget */
 @media (max-width:980px){
  .burger{display:flex}
- .nav{position:fixed;inset:72px 0 0 0;background:#fff;flex-direction:column;align-items:stretch;padding:20px 20px 120px;gap:4px;overflow-y:auto;transform:translateX(100%);transition:.3s;visibility:hidden}
- .nav.open{transform:none;visibility:visible}
+ .nav{position:fixed;inset:72px 0 0 0;background:#fff;flex-direction:column;align-items:stretch;padding:20px 20px 120px;gap:4px;overflow-y:auto;transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s,visibility .25s;visibility:hidden}
+ .nav.open{transform:none;opacity:1;pointer-events:auto;visibility:visible}
  .nav>a,.dd>a{font-size:1.15rem;padding:14px 10px;border-bottom:1px solid var(--line)}
  .dd{flex-wrap:wrap}.dd>a{flex:1}.dd-btn{padding:14px;margin:0}.dd-menu{position:static;width:100%;box-shadow:none;border:0;padding:0 0 8px 12px;display:none}.dd:hover .dd-menu{display:none}.dd.open .dd-menu{display:block}
  .nav-book{margin-top:14px;font-size:1.05rem!important;color:#fff!important}
@@ -241,3 +241,9 @@ body[data-lang="bg"],.page[data-lang="bg"]{--serif:'Playfair Display',Georgia,se
 .mb svg{width:22px;height:22px;flex:none}
 .mb-wa{background:#25d366}.mb-vb{background:#7360f2}.mb-call{background:var(--g8)}
 .mb.copied::after{content:attr(data-toast);position:fixed;left:12px;right:12px;bottom:calc(100px + env(safe-area-inset-bottom));background:#111;color:#fff;padding:10px 14px;border-radius:12px;font-size:.85rem;text-align:center;font-weight:500;white-space:normal}
+
+html,body{max-width:100%;overflow-x:clip}
+.cw{right:max(14px,env(safe-area-inset-right))}
+.cw-toggle{border:3px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mb-call{border:2px solid #fff}
+@media (max-width:980px){.site-header{backdrop-filter:none;-webkit-backdrop-filter:none;background:#fff}.nav{top:76px;height:calc(100vh - 76px);height:calc(100dvh - 76px);inset:auto 0 0 0;top:76px}}
