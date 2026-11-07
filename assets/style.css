@@ -160,8 +160,7 @@ summary{cursor:pointer;font-weight:600;font-family:var(--serif);font-size:1.1rem
 .site-footer .fc{margin-bottom:10px;font-size:.95rem}.site-footer .fc a{display:inline}.site-footer .fc .ic{color:var(--g4)}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,.12);margin-top:50px;padding:20px 0;font-size:.85rem;opacity:.85}
 .fbot a{display:inline}
-/* mobile quick bar */
-.mbar{display:none}
+/* floating contact widget */
 @media (max-width:980px){
  .burger{display:flex}
  .nav{position:fixed;inset:72px 0 0 0;background:#fff;flex-direction:column;align-items:stretch;padding:20px 20px 120px;gap:4px;overflow-y:auto;transform:translateX(100%);transition:.3s;visibility:hidden}
@@ -176,14 +175,10 @@ summary{cursor:pointer;font-weight:600;font-family:var(--serif);font-size:1.1rem
  .fgrid{grid-template-columns:1fr 1fr}.pcard.hot{transform:none}
 }
 @media (max-width:640px){
- body{font-size:16px;padding-bottom:76px}
+ body{font-size:16px}
  .row,.opts{grid-template-columns:1fr}.fgrid,.linkgrid,.timeline{grid-template-columns:1fr}
  .panel,.cbox,.form{padding:24px}.cta-box{padding:44px 20px}.dark{padding:110px 0}.fbot{flex-direction:column}
  .steps span{font-size:.72rem;padding:8px 4px}.tbl{font-size:.88rem}.tbl th,.tbl td{padding:10px}
- .mbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(0,0,0,.08)}
- .mb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:9px 4px;border-radius:14px;color:#fff;font-weight:600;font-size:.82rem}
- .mb svg{width:24px;height:24px}.mb-wa{background:#25d366}.mb-vb{background:#7360f2}.mb-call{background:var(--g8)}
- .mb.copied::after{content:'Message copied – paste it in Viber';position:fixed;left:12px;right:12px;bottom:84px;background:#111;color:#fff;padding:10px 14px;border-radius:12px;font-size:.85rem;text-align:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
@@ -230,3 +225,19 @@ body[data-lang="bg"],.page[data-lang="bg"]{--serif:'Playfair Display',Georgia,se
 .dd-menu a::after{display:none}
 @media (max-width:1100px){.tb-mail{display:none}.nav>a,.dd>a{padding:10px 9px}.nav>a::after,.dd>a::after{left:9px;right:9px}}
 @media (max-width:980px){.topbar{display:none}.hdr{height:72px;gap:12px}.hdr .nav{flex:none}.nav-cta{display:none}.hdr .lang{display:inline-flex;margin-left:auto}.nav-book{display:inline-flex}.nav>a::after,.dd>a::after{display:none}.nav a.active{color:var(--g6)}}
+
+/* floating contact widget (right side, all screen sizes) */
+.cw{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.cw-toggle{width:58px;height:58px;border-radius:50%;border:0;background:var(--g8);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(20,83,45,.35);-webkit-tap-highlight-color:transparent;position:relative}
+.cw-toggle svg{width:26px;height:26px;grid-area:1/1;transition:opacity .2s,transform .2s}
+.cw-toggle .i-x{opacity:0;transform:rotate(-90deg)}
+.cw.open .cw-toggle .i-phone{opacity:0;transform:rotate(90deg)}
+.cw.open .cw-toggle .i-x{opacity:1;transform:none}
+.cw:not(.open) .cw-toggle::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--g6);animation:cwp 2.4s ease-out infinite;pointer-events:none}
+@keyframes cwp{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.cw-menu{display:flex;flex-direction:column;align-items:flex-end;gap:10px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}
+.cw.open .cw-menu{opacity:1;visibility:visible;transform:none}
+.mb{display:flex;align-items:center;gap:10px;padding:11px 18px 11px 14px;border-radius:999px;color:#fff;font-weight:600;font-size:.95rem;box-shadow:0 6px 18px rgba(0,0,0,.2);white-space:nowrap}
+.mb svg{width:22px;height:22px;flex:none}
+.mb-wa{background:#25d366}.mb-vb{background:#7360f2}.mb-call{background:var(--g8)}
+.mb.copied::after{content:attr(data-toast);position:fixed;left:12px;right:12px;bottom:calc(100px + env(safe-area-inset-bottom));background:#111;color:#fff;padding:10px 14px;border-radius:12px;font-size:.85rem;text-align:center;font-weight:500;white-space:normal}

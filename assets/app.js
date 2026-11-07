@@ -5,6 +5,9 @@ var LG=document.body.getAttribute('data-lang')||'en';
 /* the merged preview marks the active language on the visible page */
 var S=function(){var p=document.querySelector('.page.on');var l=p?p.getAttribute('data-lang'):LG;return ST[l||'en']};
 document.addEventListener('click',function(e){
+ var t=e.target.closest('.cw-toggle');
+ if(t){var w=t.parentNode,o3=w.classList.toggle('open');t.setAttribute('aria-expanded',o3);return}
+ var cwo=$('.cw.open');if(cwo&&!e.target.closest('.cw')){cwo.classList.remove('open');$('.cw-toggle',cwo).setAttribute('aria-expanded','false')}
  var b=e.target.closest('.burger');
  if(b){var n=b.parentNode.querySelector('.nav'),o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';return}
  var d=e.target.closest('.dd-btn');
@@ -13,6 +16,7 @@ document.addEventListener('click',function(e){
  if(a){try{navigator.clipboard&&navigator.clipboard.writeText(a.getAttribute('data-copy')).catch(function(){})}catch(x){}
   a.classList.add('copied');setTimeout(function(){a.classList.remove('copied')},3500)}
 });
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var w=$('.cw.open');if(w){w.classList.remove('open');$('.cw-toggle',w).setAttribute('aria-expanded','false')}}});
 $$('.cform').forEach(function(cf){cf.addEventListener('submit',function(e){e.preventDefault();
  var ok=true;['name','contact','message'].forEach(function(n){var el=cf.elements[n];if(!el.value.trim()){el.classList.add('invalid');ok=false}else el.classList.remove('invalid')});
  if(!ok)return;
